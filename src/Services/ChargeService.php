@@ -1,0 +1,54 @@
+<?php
+
+namespace MagedAhmad\TapPayment\Services;
+
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
+
+class ChargeService
+{
+    public function validateChargeData($data)
+    {
+        $validator = Validator::make($data, [
+            'amount' => 'required',
+            'email' => 'required',
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'currency' => 'required',
+            'source' => 'required',
+            'redirect' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            throw new ValidationException($validator);
+        }
+    }
+
+    public function setChargeData($data): array
+    {
+        return [
+            "amount" => round($data['amount'],2),
+            "description" =>  'Hello '. $data['first_name'].' '.$data['last_name']. ' please pay and confirm your order Thanks.',
+            "currency" => $data['currency'],
+            "receipt" => [
+                "email" => true,
+                "sms" => true
+            ],
+            "customer"=> [
+                "first_name"=> $data['first_name'],
+                "last_name"=> $data['last_name'],
+                "email"=> $data['email'],
+                "phone"=> [
+                    "country_code" => $data['country_code'],
+                    "number" => $data['phone']
+                ]
+            ],
+            "source"=> [
+                "id"=> $data['source']
+            ],
+            "redirect"=> [
+                "url"=> $data['redirect']
+            ]
+        ];
+    }
+}

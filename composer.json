@@ -1,0 +1,54 @@
+{
+    "name": "magedahmad/tap-payment",
+    "description": "A package for tap.company payment gateway",
+    "keywords": [
+        "magedahmad",
+        "tap-payment"
+    ],
+    "homepage": "https://github.com/magedahmad/tap-payment",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Maged Raslan",
+            "email": "maged.ahmedr@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.4|^8.0",
+        "illuminate/support": "^8.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^6.0",
+        "phpunit/phpunit": "^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "MagedAhmad\\TapPayment\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MagedAhmad\\TapPayment\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "MagedAhmad\\TapPayment\\TapPaymentServiceProvider"
+            ],
+            "aliases": {
+                "TapPayment": "MagedAhmad\\TapPayment\\TapPaymentFacade"
+            }
+        }
+    }
+}
