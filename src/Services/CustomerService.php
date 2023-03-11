@@ -7,7 +7,10 @@ use Illuminate\Validation\ValidationException;
 
 class CustomerService
 {
-    public function validateCustomerData($data)
+    /**
+     * @throws ValidationException
+     */
+    public function validateCustomerData($data): void
     {
         $validator = Validator::make($data, [
             'first_name' => 'required',

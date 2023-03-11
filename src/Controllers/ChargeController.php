@@ -2,11 +2,14 @@
 
 namespace MagedAhmad\TapPayment\Controllers;
 
+use Psr\Http\Message\ResponseInterface;
+use GuzzleHttp\Exception\GuzzleException;
+use Illuminate\Validation\ValidationException;
 use MagedAhmad\TapPayment\Services\ChargeService;
 
 class ChargeController extends BaseController
 {
-    public ChargeService $chargeService;
+    public $chargeService;
 
     public function __construct(ChargeService $chargeService)
     {
@@ -15,7 +18,11 @@ class ChargeController extends BaseController
         parent::__construct();
     }
 
-    public function charge($data)
+    /**
+     * @throws GuzzleException
+     * @throws ValidationException
+     */
+    public function charge($data): ResponseInterface
     {
         $this->chargeService->validateChargeData($data);
 
@@ -24,7 +31,10 @@ class ChargeController extends BaseController
         return $this->send('POST', '/charges', $data);
     }
 
-    public function find($id)
+    /**
+     * @throws GuzzleException
+     */
+    public function find($id): ResponseInterface
     {
         return $this->send('GET', '/charges/' . $id);
     }

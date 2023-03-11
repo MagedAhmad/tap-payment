@@ -25,7 +25,7 @@ class TapPaymentServiceProvider extends ServiceProvider
 
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__.'/../config/config.php' => config_path('tap-payment.php'),
+                __DIR__.'/../config/tap-payment.php' => config_path('tap-payment.php'),
             ], 'config');
 
             // Publishing the views.

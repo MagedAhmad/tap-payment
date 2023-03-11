@@ -7,7 +7,10 @@ use Illuminate\Validation\ValidationException;
 
 class SubscribeService
 {
-    public function validateSubscribeData($data)
+    /**
+     * @throws ValidationException
+     */
+    public function validateSubscribeData($data): void
     {
         $validator = Validator::make($data, [
             'interval' => 'required',

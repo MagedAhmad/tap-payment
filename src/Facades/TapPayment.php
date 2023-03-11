@@ -4,9 +4,6 @@ namespace MagedAhmad\TapPayment\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
-/**
- * @see \MagedAhmad\TapPayment\Skeleton\SkeletonClass
- */
 class TapPayment extends Facade
 {
     /**
@@ -14,7 +11,7 @@ class TapPayment extends Facade
      *
      * @return string
      */
-    protected static function getFacadeAccessor()
+    protected static function getFacadeAccessor(): string
     {
         return 'tap-payment';
     }

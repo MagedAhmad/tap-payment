@@ -3,6 +3,8 @@
 namespace MagedAhmad\TapPayment\Controllers;
 
 use GuzzleHttp\Client;
+use Psr\Http\Message\ResponseInterface;
+use GuzzleHttp\Exception\GuzzleException;
 
 class BaseController
 {
@@ -16,7 +18,7 @@ class BaseController
     /**
      * @throws GuzzleException
      */
-    public function send($method, $url, $body = [])
+    public function send($method, $url, $body = []): ResponseInterface
     {
         return $this->client->request(
             $method,

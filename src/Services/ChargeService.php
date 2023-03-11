@@ -7,7 +7,10 @@ use Illuminate\Validation\ValidationException;
 
 class ChargeService
 {
-    public function validateChargeData($data)
+    /**
+     * @throws ValidationException
+     */
+    public function validateChargeData($data): void
     {
         $validator = Validator::make($data, [
             'amount' => 'required',
