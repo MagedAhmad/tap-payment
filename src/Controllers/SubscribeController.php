@@ -26,7 +26,9 @@ class SubscribeController extends BaseController
     {
         $this->subscribeService->validateSubscribeData($data);
 
-        return $this->send('POST', 'subscription/v1/', $data);
+        $data = $this->subscribeService->setSubscribeData($data);
+
+        return $this->send('POST', '/subscription/v1/', $data);
     }
 
     /**

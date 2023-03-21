@@ -18,7 +18,6 @@ class ChargeService
             'first_name' => 'required',
             'last_name' => 'required',
             'currency' => 'required',
-            'source' => 'required',
             'redirect' => 'required',
         ]);
 
@@ -33,6 +32,7 @@ class ChargeService
             "amount" => round($data['amount'],2),
             "description" =>  'Hello '. $data['first_name'].' '.$data['last_name']. ' please pay and confirm your order Thanks.',
             "currency" => $data['currency'],
+            "save_card" => true,
             "receipt" => [
                 "email" => true,
                 "sms" => true
@@ -47,7 +47,7 @@ class ChargeService
                 ]
             ],
             "source"=> [
-                "id"=> $data['source']
+                "id" => "src_all"
             ],
             "redirect"=> [
                 "url"=> $data['redirect']
