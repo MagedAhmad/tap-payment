@@ -16,9 +16,9 @@ class ChargeService
             'amount' => 'required',
             'email' => 'required',
             'first_name' => 'required',
-            'last_name' => 'required',
             'currency' => 'required',
             'redirect' => 'required',
+            'post_url' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -30,7 +30,7 @@ class ChargeService
     {
         return [
             "amount" => round($data['amount'],2),
-            "description" =>  'Hello '. $data['first_name'].' '.$data['last_name']. ' please pay and confirm your order Thanks.',
+            "description" =>  'Hello '. $data['first_name']. ' please pay and confirm your order Thanks.',
             "currency" => $data['currency'],
             "save_card" => true,
             "receipt" => [
@@ -39,7 +39,6 @@ class ChargeService
             ],
             "customer"=> [
                 "first_name"=> $data['first_name'],
-                "last_name"=> $data['last_name'],
                 "email"=> $data['email'],
                 "phone"=> [
                     "country_code" => $data['country_code'],
@@ -51,6 +50,9 @@ class ChargeService
             ],
             "redirect"=> [
                 "url"=> $data['redirect']
+            ],
+            "post" => [
+                "url" => $data['post_url']
             ]
         ];
     }
