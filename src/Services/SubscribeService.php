@@ -42,8 +42,8 @@ class SubscribeService
                 "timezone"=> $data['timezone']
             ],
             "trial"=> [
-                "days"=> 3,
-                "amount"=> $data['amount']
+                "days"=> 0,
+                "amount"=> 0
             ],
             "charge"=> [
                 "amount"=> $data['amount'],
